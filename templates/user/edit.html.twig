@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Edit your account</h1>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="btn btn-success" href="{{ path('user_show', {'id': app.user.id}) }}">back to list</a>
+
+</div>
+{% endblock %}

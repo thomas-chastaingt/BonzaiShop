@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>My cart</h1>
+        <div>
+            <a href=""></a>
+
+        </div>
+        {% if items | length > 0 %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.product.price }}</td>
+                            <td><a class="btn btn-success ml-1 mr-1" href="{{ path('cart_less', {'id': item.product.id}) }}">- </a>{{ item.quantity }}<a class="btn btn-success ml-1 mr-1" href="{{ path('cart_add', {'id': item.product.id}) }}"> +</a></td>
+                            
+                            <td>{{ item.product.price * item.quantity }}</td>
+                            <td>
+                                <a href="{{ path('cart_remove', {'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="text-right">Cost of transport : </td>
+                        <td>7,99</td>
+                        <td colspan="1" class="text-right">Total : </td>
+                        <td>{{ total }}</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div>
+                <a class="btn btn-success" href="{{ path('save_order') }}">Confirm my order</a>
+            </div>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+
+    </div>
+{% endblock %}

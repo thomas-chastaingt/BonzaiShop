@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+<div class="container">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ product.Name }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ product.Price }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ product.Description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('product_index') }}">back to list</a>
+</div>
+{% endblock %}

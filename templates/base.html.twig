@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Bonzai Shop{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{{ path('index') }}"><img src="{{ asset('assets/img/bonzai.jpg') }}" alt="logo de bonzai shop" width="200"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('index') }}">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('route_product') }}">Products</a>
+                        </li>
+                {% if app.user %}
+                    <li class="nav-item ml-4"><a class="nav-link" href="{{ path('route_cart') }}"><img src="{{ asset('assets/img/cart.png') }}" alt="Panier de commande" width="40"></a>My cart</li>
+                     <li class="nav-item ml-4"><a class="nav-link" href="{{ path('user_show', {'id': app.user.id}) }}">My profile</li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('route_login') }}">Sign in</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('route_register') }}">Don't have an account? Sign up</a></li>
+                {% endif %}
+                    </ul>
+                </div>
+            </nav>
+            <header>
+            {% if app.user %}
+                <p class="text-right m-4">You are logged in as {{ app.user.username }} <a  class="btn btn-primary" href="{{ path('app_logout') }}">Logout</a><p>
+            {% endif %}
+            <header>
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+        <div>
+            <p class="text-center m-4">All rights reserved to Thomas Chastaingt as part of the Symfony course.</p>
+    </body>
+</html>
+
+
